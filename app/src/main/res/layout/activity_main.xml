@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_marginBaseline="16dp"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <TextView
         android:id="@+id/txt_titulo"
@@ -81,7 +81,7 @@
         android:layout_height="64dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="48dp"
-        android:backgroundTint="#44a1bb"
+        android:backgroundTint="#2b3b4b"
         android:text="@string/txt_button_salvar"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,8 +93,10 @@
         android:layout_width="375dp"
         android:layout_height="55dp"
         android:width="370dp"
-        android:backgroundTint="#9cbbc5"
+        android:backgroundTint="#2b3b4c"
         android:text="@string/txt_button_finalizar"
+        android:textColor="#fcfcfc"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -107,7 +109,7 @@
         android:layout_width="155dp"
         android:layout_height="64dp"
         android:layout_marginBottom="48dp"
-        android:backgroundTint="#44a1bb"
+        android:backgroundTint="#2b3b4b"
         android:text="@string/txt_button_limpar"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toStartOf="@+id/btn_salvar"
