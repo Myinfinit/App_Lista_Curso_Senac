@@ -3,6 +3,7 @@ package com.example.appcurso.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.appcurso.R;
 import com.example.appcurso.model.Pessoa;
@@ -31,20 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
         OutraPessoa = new Pessoa();
 
-        OutraPessoa.setPrimeiro_nome("Helton");
-        OutraPessoa.setSobrenome("Francisco");
+        OutraPessoa.setPrimeiro_nome("Aida");
+        OutraPessoa.setSobrenome("Quisito");
         OutraPessoa.setNome_curso("Java");
         OutraPessoa.setTel_Contato("847289402");
 
-
-
-        String dadosPessoa = "Nome: " + pessoa.getPrimeiro_nome() + "\n" + "Sobrenome: " + pessoa.getSobrenome() + "\n" +
-                "Curso: " + pessoa.getNome_curso() + "\n" +
-                "Telefone: " + pessoa.getTel_Contato();
-
-        int parada = 0;
-
-
+        Log.i( "Informaçoes pessoais", pessoa.toString());
+        Log.i("Outra informação", OutraPessoa.toString());
 
 
 
