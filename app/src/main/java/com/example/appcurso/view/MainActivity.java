@@ -11,14 +11,13 @@ import com.example.appcurso.R;
 import com.example.appcurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
-
     Pessoa pessoa;
     EditText editTextNome;
     EditText editTextSobrenome;
     EditText editTextCurso;
     EditText editTextTelefone;
-    Button buttonLimpar;
-    Button buttonSalvar;
+    Button buttonLimpar; // Declaração do botão Limpar
+    Button buttonSalvar; // Declaração do botão Salvar
     Button buttonFinalizar; // Declaração do botão Finalizar
     TextView txtDadosSalvos;
 
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Configuração do botão "Limpar" para apagar os campos e o TextView
         buttonLimpar.setOnClickListener(view -> {
-            editTextNome.setText("Digite de nocvo o nome");
+            editTextNome.setText("");
             editTextSobrenome.setText("");
             editTextCurso.setText("");
             editTextTelefone.setText("");
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Dados Salvos", pessoa.toString());
 
                 // Exibindo uma notificação Toast com a mensagem "Dados Salvos"
-                Toast.makeText(MainActivity.this, "Dados Salvos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, pessoa.toString(), Toast.LENGTH_SHORT).show();
 
                 // Limpar campos após salvar
                 //editTextNome.setText("");
@@ -103,11 +102,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         // Configuração do botão "Finalizar"
         buttonFinalizar.setOnClickListener(view -> {
-            // Aqui você pode colocar o que você quer que aconteça ao finalizar
-            // Por exemplo, mostrar uma mensagem de finalização
-            Toast.makeText(MainActivity.this, "Processo Finalizado", Toast.LENGTH_SHORT).show();
+            // Mostrar uma mensagem de finalização
+            Toast.makeText(MainActivity.this, "Finalizado, Volte sempre", Toast.LENGTH_SHORT).show();
 
             // Ou finalizar a atividade e sair
             finish(); // Fecha a atividade atual
