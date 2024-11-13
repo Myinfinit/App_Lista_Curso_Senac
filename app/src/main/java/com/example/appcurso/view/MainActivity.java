@@ -2,6 +2,7 @@
 package com.example.appcurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,10 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicialização do controlador
         pessoaController = new PessoaController();
 
-        // Referência aos campos de entrada, botões e TextView no layout
         editTextNome = findViewById(R.id.edit_primeiro_nome);
         editTextSobrenome = findViewById(R.id.edit_sobrenome);
         editTextCurso = findViewById(R.id.edit_nome_curso);
@@ -43,32 +42,31 @@ public class MainActivity extends AppCompatActivity {
         buttonFinalizar = findViewById(R.id.button3);
         txtDadosSalvos = findViewById(R.id.txt_dados_salvos);
 
-        // Dados de exemplo para preencher os campos automaticamente
+
         Pessoa pessoa = new Pessoa();
         pessoa.setPrimeiro_nome("Helton");
         pessoa.setSobrenome("Francisco");
         pessoa.setNome_curso("Java");
         pessoa.setTel_Contato("847289402");
 
-        // Preenchendo os campos EditText automaticamente ao iniciar
+
         editTextNome.setText(pessoa.getPrimeiro_nome());
         editTextSobrenome.setText(pessoa.getSobrenome());
         editTextCurso.setText(pessoa.getNome_curso());
         editTextTelefone.setText(pessoa.getTel_Contato());
 
-        // Configuração do botão "Salvar"
+
         buttonSalvar.setOnClickListener(view -> {
-            // Coleta dos dados dos campos de entrada
             Pessoa novaPessoa = new Pessoa();
             novaPessoa.setPrimeiro_nome(editTextNome.getText().toString().trim());
             novaPessoa.setSobrenome(editTextSobrenome.getText().toString().trim());
             novaPessoa.setNome_curso(editTextCurso.getText().toString().trim());
             novaPessoa.setTel_Contato(editTextTelefone.getText().toString().trim());
 
-            // Salva a pessoa no controlador
+
             pessoaController.salvar(novaPessoa);
 
-            // Atualiza o TextView com os dados salvos
+
             txtDadosSalvos.setText(
                     "Nome: " + novaPessoa.getPrimeiro_nome() + " " + novaPessoa.getSobrenome() +
                             "\nCurso: " + novaPessoa.getNome_curso() +
@@ -77,11 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            // Exibe a notificação de confirmação de dados salvos
             Toast.makeText(MainActivity.this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
         });
 
-        // Configuração do botão "Limpar"
+
         buttonLimpar.setOnClickListener(view -> {
             editTextNome.setText("");
             editTextSobrenome.setText("");
@@ -90,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             txtDadosSalvos.setText("");
         });
 
-        // Configuração do botão "Finalizar"
+
         buttonFinalizar.setOnClickListener(view -> {
             Toast.makeText(MainActivity.this, "Finalizado, Volte sempre", Toast.LENGTH_SHORT).show();
             finish();
