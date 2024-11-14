@@ -3,6 +3,7 @@ package com.example.appcurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,12 +27,21 @@ public class MainActivity extends AppCompatActivity {
 
     PessoaController pessoaController;
 
+    SharedPreferences listaVip;
+    SharedPreferences.Editor editor;
+
+
+    public static final String NOME_PREFERENCE = "pref_ListaVip";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         pessoaController = new PessoaController();
+
+        listaVip = getSharedPreferences(NOME_PREFERENCE,MODE_PRIVATE);
+        editor = listaVip.edit();
+
 
         editTextNome = findViewById(R.id.edit_primeiro_nome);
         editTextSobrenome = findViewById(R.id.edit_sobrenome);
@@ -44,16 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         Pessoa pessoa = new Pessoa();
-        pessoa.setPrimeiro_nome("Helton");
-        pessoa.setSobrenome("Francisco");
-        pessoa.setNome_curso("Java");
-        pessoa.setTel_Contato("847289402");
 
 
-        editTextNome.setText(pessoa.getPrimeiro_nome());
-        editTextSobrenome.setText(pessoa.getSobrenome());
-        editTextCurso.setText(pessoa.getNome_curso());
-        editTextTelefone.setText(pessoa.getTel_Contato());
+
+        editTextNome.setText(listaVip.getString("Nome", ""));
+        editTextSobrenome.setText(listaVip.getString("Sobrenome", ""));
+        editTextCurso.setText(listaVip.getString("Curso", ""));
+        editTextTelefone.setText(listaVip.getString("Telefone", ""));
 
 
         buttonSalvar.setOnClickListener(view -> {
@@ -64,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             novaPessoa.setTel_Contato(editTextTelefone.getText().toString().trim());
 
 
-            pessoaController.salvar(novaPessoa);
+            pessoaController.salvar(novaPessoa, editor);
 
 
             txtDadosSalvos.setText(
@@ -72,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                             "\nCurso: " + novaPessoa.getNome_curso() +
                             "\nTelefone: " + novaPessoa.getTel_Contato()
             );
+
+
 
 
 
