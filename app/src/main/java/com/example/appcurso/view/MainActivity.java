@@ -1,4 +1,3 @@
-// MainActivity.java
 package com.example.appcurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences listaVip;
     SharedPreferences.Editor editor;
 
-
     public static final String NOME_PREFERENCE = "pref_ListaVip";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         pessoaController = new PessoaController();
 
-        listaVip = getSharedPreferences(NOME_PREFERENCE,MODE_PRIVATE);
+        listaVip = getSharedPreferences(NOME_PREFERENCE, MODE_PRIVATE);
         editor = listaVip.edit();
-
 
         editTextNome = findViewById(R.id.edit_primeiro_nome);
         editTextSobrenome = findViewById(R.id.edit_sobrenome);
@@ -52,16 +50,10 @@ public class MainActivity extends AppCompatActivity {
         buttonFinalizar = findViewById(R.id.button3);
         txtDadosSalvos = findViewById(R.id.txt_dados_salvos);
 
-
-        Pessoa pessoa = new Pessoa();
-
-
-
         editTextNome.setText(listaVip.getString("Nome", ""));
         editTextSobrenome.setText(listaVip.getString("Sobrenome", ""));
         editTextCurso.setText(listaVip.getString("Curso", ""));
         editTextTelefone.setText(listaVip.getString("Telefone", ""));
-
 
         buttonSalvar.setOnClickListener(view -> {
             Pessoa novaPessoa = new Pessoa();
@@ -70,9 +62,7 @@ public class MainActivity extends AppCompatActivity {
             novaPessoa.setNome_curso(editTextCurso.getText().toString().trim());
             novaPessoa.setTel_Contato(editTextTelefone.getText().toString().trim());
 
-
             pessoaController.salvar(novaPessoa, editor);
-
 
             txtDadosSalvos.setText(
                     "Nome: " + novaPessoa.getPrimeiro_nome() + " " + novaPessoa.getSobrenome() +
@@ -80,26 +70,24 @@ public class MainActivity extends AppCompatActivity {
                             "\nTelefone: " + novaPessoa.getTel_Contato()
             );
 
-
-
-
-
             Toast.makeText(MainActivity.this, "Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
         });
 
-
         buttonLimpar.setOnClickListener(view -> {
-            editTextNome.setText("");
-            editTextSobrenome.setText("");
-            editTextCurso.setText("");
-            editTextTelefone.setText("");
-            txtDadosSalvos.setText("");
+            pessoaController.limpar(editor);
+            limparCampos();
         });
-
 
         buttonFinalizar.setOnClickListener(view -> {
-            Toast.makeText(MainActivity.this, "Finalizado, Volte sempre", Toast.LENGTH_SHORT).show();
-            finish();
+            pessoaController.finalizar(this);
         });
+    }
+
+    private void limparCampos() {
+        editTextNome.setText("");
+        editTextSobrenome.setText("");
+        editTextCurso.setText("");
+        editTextTelefone.setText("");
+        txtDadosSalvos.setText("");
     }
 }
