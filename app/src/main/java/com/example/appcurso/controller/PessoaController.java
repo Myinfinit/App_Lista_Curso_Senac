@@ -1,9 +1,9 @@
-// PessoaController.java
 package com.example.appcurso.controller;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.appcurso.model.Pessoa;
 
@@ -25,5 +25,17 @@ public class PessoaController {
         editor.putString("Telefone", pessoa.getTel_Contato());
         editor.commit();
         Log.d("MVC_CONTROLLER", "DADOS SALVOS: " + pessoa.toString());
+    }
+
+    public void limpar(SharedPreferences.Editor editor) {
+        editor.clear();
+        editor.commit();
+        Log.d("MVC_CONTROLLER", "DADOS LIMPOS");
+    }
+
+    public void finalizar(Activity activity) {
+        Toast.makeText(activity, "Finalizado, volte sempre!", Toast.LENGTH_SHORT).show();
+        activity.finish();
+        Log.d("MVC_CONTROLLER", "FINALIZADO");
     }
 }
